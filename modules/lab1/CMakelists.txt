@@ -1,0 +1,11 @@
+get_filename_component(ProjectId ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+
+project(${ProjectId})
+message(STATUS "-- " ${ProjectId})
+
+file(GLOB source_files "*.cpp")
+
+add_definitions(-DKERNEL_PATH="${CMAKE_CURRENT_SOURCE_DIR}/kernel/kernel.cl")
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
+add_executable(${ProjectId} ${source_files})
+target_link_libraries (${ProjectId} ${OpenCL_LIBRARIES})
